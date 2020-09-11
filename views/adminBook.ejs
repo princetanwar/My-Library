@@ -1,0 +1,22 @@
+<%- include('partials/adminHeader'); -%>
+
+  <h2><%= title %></h2>
+
+  <ul class="books">
+    <% books.forEach(ele =>{ %>
+
+    <li class="book">
+      <img src="/book.jpg" alt="Book icon" />
+      <h4><%= ele.name %></h4>
+      <p><%= ele.description %></p>
+      <% if(remove) { %>
+      <a href="/admin/remove-book/ <%= ele._id %> " class="get-now">Remove</a>
+
+      <% } %>
+    </li>
+
+    <% }) %>
+  </ul>
+
+  <%- include('partials/footer'); -%>
+</html>

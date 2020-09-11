@@ -1,0 +1,15 @@
+<%- include('partials/header'); -%>
+<ul class="books">
+  <% books.forEach((ele) =>{ %>
+
+  <li class="book">
+    <img src="/book.jpg" alt="Book icon" />
+    <h4><%= ele.name %></h4>
+    <p><%= ele.description %></p>
+
+    <a href="/get-now/<%= ele._id %> " class="get-now">Get Now</a>
+  </li>
+  <% }) %>
+</ul>
+
+<%- include('partials/footer'); -%>

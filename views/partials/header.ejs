@@ -1,0 +1,36 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Library</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <nav>
+      <h1><a href="/">My Library</a></h1>
+      <ul>
+        <% if (user) { %>
+        <li>Welcome, <%= user.email %></li>
+
+        <li>
+          <a href="/profile">Proflie</a>
+        </li>
+        <li>
+          <a href="/logout">LogOut</a>
+        </li>
+
+        <% } else { %>
+
+        <li>
+          <a href="/login">Login</a>
+        </li>
+
+        <li>
+          <a href="/singup" class="btn">Singup</a>
+        </li>
+
+        <% } %>
+      </ul>
+    </nav>
+  </body>
+</html>

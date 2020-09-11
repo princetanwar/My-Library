@@ -1,0 +1,18 @@
+<%- include('partials/header'); -%>
+
+<h2>Your Books</h2>
+
+<ul class="books">
+  <% books.forEach(ele =>{ %>
+
+  <li class="book">
+    <h4><%= ele.name %></h4>
+    <p><%= ele.description %></p>
+
+    <a href="/remove/ <%= ele.oriBookId %> " class="get-now">Remove</a>
+  </li>
+
+  <% }) %>
+</ul>
+
+<%- include('partials/footer'); -%>

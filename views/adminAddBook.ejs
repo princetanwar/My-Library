@@ -1,0 +1,59 @@
+<%- include('partials/adminHeader'); -%>
+  
+
+  <form>
+    <h2>Add Book</h2>
+    <label for="name">Name</label>
+    <input type="text" name="name" required />
+    <div class="error name"></div>
+
+    <label for="description">description</label>
+    <input type="text" name="description" required />
+    <div class="error description"></div>
+    <button>Add Book</button>
+  </form>
+
+
+  <script>
+        const form = document.querySelector("form");
+        const nameError = document.querySelector(".name.error");
+        const descriptionError = document.querySelector(".description.error");
+
+        form.addEventListener('submit', async (e) => {
+
+            e.preventDefault();
+
+               // resting error
+               nameError.textContent = "";
+               descriptionError.textContent = "";
+                    
+                // geting value of name and description
+                const name = form.name.value
+                const description = form.description.value
+                console.log('name is ',name, 'discription is ', description)
+
+
+               try {
+                const res = await fetch("/admin/add-book", {
+                    method: "POST",
+                    body: JSON.stringify({ name, description }),
+                    headers: { "Content-Type": "application/json" },
+                });
+                const data = await res.json();
+                console.log(data);
+                if(data._id){
+                    descriptionError.textContent = 'Added to Database'
+                    form.name.value = ''
+                    form.description.value = ''
+                }
+
+                } catch (error) {
+                console.log(error);
+                }
+
+        } )
+
+  </script>
+
+  <%- include('partials/footer'); -%>
+</html>

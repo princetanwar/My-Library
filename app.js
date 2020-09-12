@@ -6,6 +6,9 @@ const bookRoute = require("./router/bookRouter");
 const userRoute = require("./router/userRouter");
 const adminRoute = require("./router/adminRouter");
 const { checkUser } = require("./Middleware/authMiddleware");
+const { dbURI } = require("./config/keys");
+
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -18,14 +21,17 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 
 // database connection
-const dbURI = "mongodb://localhost:27017/node-auth";
+
 mongoose
   .connect(dbURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
   })
-  .then((result) => app.listen(3000))
+  .then((result) => {
+    app.listen(PORT);
+    console.log(`Listening on ${PORT}`);
+  })
   .catch((err) => console.log(err));
 
 //admin routers

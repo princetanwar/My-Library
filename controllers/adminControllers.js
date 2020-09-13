@@ -1,10 +1,11 @@
 const Admin = require("../model/Admin");
 const Book = require("../model/Book");
 const jwt = require("jsonwebtoken");
+const { adminSecret } = require("../config/keys");
 
 const maxAge = 259200000;
 const createToken = (id) => {
-  return jwt.sign({ id }, "prince admin", { expiresIn: maxAge });
+  return jwt.sign({ id }, adminSecret, { expiresIn: maxAge });
 };
 
 module.exports.adminLogin_get = (req, res) => {

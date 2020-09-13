@@ -1,5 +1,6 @@
 const User = require("../model/User");
 const jwt = require("jsonwebtoken");
+const { userSecret } = require("../config/keys");
 
 //error handleing
 const handelErrors = (err) => {
@@ -31,7 +32,7 @@ const handelErrors = (err) => {
 // three day in milesecond
 const maxAge = 259200000;
 const createToken = (id) => {
-  return jwt.sign({ id }, "prince tanwar", { expiresIn: maxAge });
+  return jwt.sign({ id }, userSecret, { expiresIn: maxAge });
 };
 
 module.exports.singup_get = (req, res) => {

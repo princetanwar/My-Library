@@ -1,12 +1,13 @@
 const jwt = require("jsonwebtoken");
 const User = require("../model/User");
+const { userSecret, adminSecret } = require("../config/keys");
 
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
 
   //check is jwt exists & verified
   if (!!token) {
-    jwt.verify(token, "prince tanwar", (err, decodedToken) => {
+    jwt.verify(token, userSecret, (err, decodedToken) => {
       if (!!err) {
         console.log(err.message);
         res.redirect("/login");
@@ -24,7 +25,7 @@ const isAdmin = (req, res, next) => {
   const adminToken = req.cookies.jwt;
 
   if (!!adminToken) {
-    jwt.verify(adminToken, "prince admin", (err, decodedToken) => {
+    jwt.verify(adminToken, adminSecret, (err, decodedToken) => {
       if (!!err) {
         console.log(err.message);
         res.redirect("/admin/login");
@@ -44,7 +45,7 @@ const checkUser = (req, res, next) => {
 
   // user and userD are same
   if (!!token) {
-    jwt.verify(token, "prince tanwar", async (err, decodedToken) => {
+    jwt.verify(token, userSecret, async (err, decodedToken) => {
       if (!!err) {
         console.log(err.message);
         res.locals.user = null;

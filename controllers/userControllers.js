@@ -15,7 +15,7 @@ module.exports.remove_get = async (req, res) => {
 
   try {
     const user = await User.findById(req.userD, "password books");
-    console.log("we are geting ", user);
+    // console.log("we are geting ", user);
 
     const result = user.books.filter((element) => {
       if (element.oriBookId === yid) {

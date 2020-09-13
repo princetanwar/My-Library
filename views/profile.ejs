@@ -2,6 +2,10 @@
 
 <h2>Your Books</h2>
 
+<% if(books.length <= 0) { %>
+<h1 class="no_book">You don't have any book now</h1>
+<% } else{ %>
+
 <ul class="books">
   <% books.forEach(ele =>{ %>
 
@@ -15,4 +19,4 @@
   <% }) %>
 </ul>
 
-<%- include('partials/footer'); -%>
+<% } %> <%- include('partials/footer'); -%>

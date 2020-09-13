@@ -160,3 +160,9 @@ footer {
   margin-top: 120px;
   color: #aaa;
 }
+
+.no_book {
+  display: block;
+  text-align: center;
+  margin-top: 4rem;
+}

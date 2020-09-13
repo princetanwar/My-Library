@@ -17,6 +17,7 @@ module.exports.admin_get = async (req, res) => {
   res.locals.books = books;
   res.locals.title = "All Books Of Library";
   res.locals.remove = false;
+  res.locals.notAvailableTitle = "We don't have any book";
   res.render("adminBook");
 };
 
@@ -26,6 +27,7 @@ module.exports.adminIssuedBook_get = async (req, res) => {
   res.locals.books = books;
   res.locals.title = "Issued Books";
   res.locals.remove = false;
+  res.locals.notAvailableTitle = "No book issued now";
   res.render("adminBook");
 };
 
@@ -35,6 +37,7 @@ module.exports.adminAvailableBook_get = async (req, res) => {
   res.locals.books = books;
   res.locals.title = "Available Books In Library";
   res.locals.remove = true;
+  res.locals.notAvailableTitle = "No book available now";
   res.render("adminBook");
 };
 

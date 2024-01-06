@@ -8,6 +8,8 @@ const createToken = (id) => {
   return jwt.sign({ id }, adminSecret, { expiresIn: maxAge });
 };
 
+module.exports.createToken = createToken;
+
 module.exports.adminLogin_get = (req, res) => {
   res.render("adminLogin");
 };
@@ -46,9 +48,11 @@ module.exports.adminLogin_post = async (req, res) => {
 
   try {
     const user = await Admin.login(email, password);
-    const token = createToken(user._id);
+    const token = module.exports.createToken(user._id);
+    
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge });
-    res.status(200).json({ user: user._id });
+    res.status(200);
+    res.json({ user: user._id });
   } catch (error) {
     let errors = { email: "", password: "" };
     if (error.message === "Incorrect Password") {
@@ -57,7 +61,8 @@ module.exports.adminLogin_post = async (req, res) => {
     if (error.message === "Incorrect Email") {
       errors.email = "Incorrect Email";
     }
-    res.status(400).json({ errors });
+    res.status(400);
+    res.json({ errors });
   }
 };
 

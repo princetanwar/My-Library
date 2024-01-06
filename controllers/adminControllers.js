@@ -71,9 +71,11 @@ module.exports.adminAddBook_post = async (req, res) => {
 
   try {
     const book = await Book.create({ name, description });
-    res.status(200).json(book);
+    res.status(200)
+    res.json(book);
   } catch (error) {
-    res.status(400).json(error);
+    res.status(400)
+    res.json(error);
   }
 };
 
